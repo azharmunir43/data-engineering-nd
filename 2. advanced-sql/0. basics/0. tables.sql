@@ -44,16 +44,13 @@ COMMENT ON COLUMN "HR"."EMPLOYEES"."COMMISSION_PCT" IS
 
 COMMENT ON COLUMN "HR"."EMPLOYEES"."MANAGER_ID" IS
     'Manager id of the employee; has same domain as manager_id in departments table. Foreign key to employee_id 
-    column of employees table. (useful for reflexive joins and CONNECT BY query)'
-    ;
+    column of employees table. (useful for reflexive joins and CONNECT BY query)';
 
 COMMENT ON COLUMN "HR"."EMPLOYEES"."DEPARTMENT_ID" IS
-    'Department id where employee works; foreign key to department_id
-column of the departments table';
+    'Department id where employee works; foreign key to department_idcolumn of the departments table';
 
 COMMENT ON TABLE "HR"."EMPLOYEES" IS
-    'employees table. Contains 107 rows. References with departments,
-jobs, job_history tables. Contains a self reference.';
+    'employees table. Contains 107 rows. References with departments, jobs, job_history tables. Contains a self reference.';
 
 --------------------------------------------------------
 --  Constraints for Table EMPLOYEES
@@ -101,7 +98,7 @@ ALTER TABLE "HR"."EMPLOYEES"
     ADD CONSTRAINT "EMP_MANAGER_FK" FOREIGN KEY ( "MANAGER_ID" )
         REFERENCES "HR"."EMPLOYEES" ( "EMPLOYEE_ID" )
     ENABLE;
-            
+-- While defining these ref constraints we can configure what happens when something happens to parent, i.e. CASCADE etc.            
 --------------------------------------------------------
 --  DROP Table Structure & Data (AUTOCOMMIT)
 --------------------------------------------------------
@@ -126,7 +123,7 @@ INSERT INTO employees VALUES (
 );
 
 --------------------------------------------------------
---  Deleting Data only (CAN BE ROLLED BACK - NOT AUTOCOMMIT)
+--  Deleting Data only (AUTOCOMMIT)
 --------------------------------------------------------
 
 TRUNCATE TABLE employees;
@@ -169,6 +166,24 @@ SELECT
             'Fresh'
         ELSE
             'Senior'
-    END status
+    END Seniority
 FROM
-    employees
+    employees;
+
+--------------------------------------------------------
+--  Removing Selective Data only (NOT AUTOCOMMIT, Can be Rolled Back)
+--------------------------------------------------------
+
+DELETE FROM employees
+WHERE
+    employee_id = 1;
+
+--------------------------------------------------------
+--  Updating Selective Data only 
+--------------------------------------------------------
+
+UPDATE employees
+SET
+    job_id = 2
+WHERE
+    employee_id = 1;
