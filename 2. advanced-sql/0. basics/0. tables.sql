@@ -44,7 +44,8 @@ COMMENT ON COLUMN "HR"."EMPLOYEES"."COMMISSION_PCT" IS
 
 COMMENT ON COLUMN "HR"."EMPLOYEES"."MANAGER_ID" IS
     'Manager id of the employee; has same domain as manager_id in departments table. Foreign key to employee_id 
-    column of employees table. (useful for reflexive joins and CONNECT BY query)';
+    column of employees table. (useful for reflexive joins and CONNECT BY query)'
+    ;
 
 COMMENT ON COLUMN "HR"."EMPLOYEES"."DEPARTMENT_ID" IS
     'Department id where employee works; foreign key to department_idcolumn of the departments table';
@@ -161,12 +162,13 @@ ORDER BY
 --------------------------------------------------------
 
 SELECT
-    CASE year(hire_date)
-        WHEN '2019' THEN
+    employee_id,
+    CASE EXTRACT(YEAR FROM hire_date)
+        WHEN 2008 THEN
             'Fresh'
         ELSE
             'Senior'
-    END Seniority
+    END seniority
 FROM
     employees;
 
