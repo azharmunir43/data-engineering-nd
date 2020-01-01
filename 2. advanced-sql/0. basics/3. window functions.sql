@@ -24,9 +24,9 @@ FROM
 --* Each window operation in the query is signified by inclusion of an OVER clause that specifies how to 
 --  partition query rows into groups for processing by the window function:
 --*    * The first OVER clause is empty, which treats the entire set of query rows as a single partition. 
---       The window function thus produces a global sum, but does so for each row.
---*    * The second OVER clause partitions rows by country, producing a sum per partition (per country). 
---       The function produces this sum for each partition row.
+--       The window function thus produces a global average, but does so for each row.
+--*    * The second OVER clause partitions rows by department, producing a sum per partition (per deparment). 
+--       The function produces this average for each partition row.
 
 
 --** OTHER AGG FUNCTIONS include MIN, MAX, SUM etc. However SQL Server and MySQL also support some interesting functions like:
