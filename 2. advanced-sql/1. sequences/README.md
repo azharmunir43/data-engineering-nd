@@ -15,11 +15,18 @@ More on sequences creation & modification can be found here.
 * NEXTVAL: Returns next sequence value. Returns a unique value in every usage even by different users. 
 * CURRVAL: Returns the current sequence value. We must use NEXTVAL at least for one time to be able use CURRVAL keyword in our session. 
 * We can use NEXTVAL and CURRVAL in: 
-  * SELECT list of a SELECT statement (not in a subquery or a view) 
+  * SELECT list of a SELECT statement
   * SELECT list of a subquery in an INSERT Statement. 
   * VALUES part of an INSERT Statement. 
   * SET clause of an UPDATE Statement. 
-  * We can not use NEXTVAL and CURRVAL with a DISTINCT keyword or with a GROUP BY, HAVING, ORDER BY clauses. 
+* We can not use NEXTVAL and CURRVAL with
+  * A subquery
+  * A view query or materialized view query
+  * A `SELECT` statement with the `DISTINCT` operator
+  * A `SELECT` statement with a `GROUP` `BY` or `ORDER` `BY` clause
+  * A `SELECT` statement that is combined with another `SELECT` statement with the `UNION,` `INTERSECT`, or `MINUS` set operator
+  * The `WHERE` clause of a `SELECT` statement
+  * The condition of a `CHECK` constraint
 
 ### Sequence Caching 
 

@@ -36,3 +36,20 @@ Name varchar2(59)
 
 
 INSERT INTO Employee2(Name) VALUES('Azhar') ;
+
+
+--**--------------------------------------------------------**--
+-- Problem : How do we change the value in an Oracle Sequence?
+--**--------------------------------------------------------**--
+
+--  • You can change the LASTVALUE for an Oracle sequence, by executing an ALTER SEQUENCE command.
+--  • For example, if the last value used by the Oracle sequence was 100 and you would like to reset 
+--    the sequence to serve 225 as the next value.
+
+ALTER SEQUENCE employee_seq
+INCREMENT BY 124;
+
+SELECT employee_seq.NEXTVAL FROM dual;
+
+ALTER SEQUENCE employee_seq
+INCREMENT BY 1;

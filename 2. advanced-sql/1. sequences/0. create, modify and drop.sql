@@ -17,7 +17,7 @@ CREATE SEQUENCE [schema].[sequence name]
 | {CYCLE | NOCYCLE}                     -- • NOMAXVALUE: Generateres sequence values until it reaches 10^27. 
 | {CACHE integer | NOCACHE}             -- • MINVALUE : Minimum value that the sequence generates. 
 | {ORDER | NOORDER}                     -- • NOMINVALUE: Generateres sequence values until it reaches -10^26. 
-;                                      -- • CYCLE: After reaching the maximum value, sequence continues to generate numbers starting 
+;                                       -- • CYCLE: After reaching the maximum value, sequence continues to generate numbers starting 
 										--   with the minimum value. 
                                         -- • NOCYCLE: Stops generating numbers after reaching the maximum value. (By default NOCYCLE is set) 
                                         -- • CACHE : Specifies how manyvalues are kept in memory by Oracle Server. 
@@ -45,7 +45,7 @@ CREATE SEQUENCE employee_seq
 -- • We can modify a sequence with using ALTER SEQUENCE keywords. 
 -- • We must be the owner or have the ALTER privilege to modify a sequence. 
 -- • Only future sequence numbers are affected. 
--- • We can not use START WITH opetion while modifying a sequence. 
+-- • We can not use START WITH option while modifying a sequence. 
 -- • We must drop and re-create the sequence for starting with a different number. 
 -- • While modifying, some validation is performed (for example: MAXVALUE can not be smaller than the existing MAXVALUE)
 
