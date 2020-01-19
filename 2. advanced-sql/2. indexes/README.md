@@ -2,7 +2,7 @@
 
 Indexes are schema objects for speeding up the retrieval of rows by using a pointer. 
 
-* Basically, indexes improves performance of queries. 
+* Basically, indexes improve performance of queries. 
 * Because indexes have pointers, it directly points to a related row. (Locate to the exact location of the data in the disk rather than scanning all the disk). This is much faster than the normal way. 
 * If there is no index for a column, "full-table scan" occurs. 
 * Indexes are created explicitly or automatically (with creating primary or unique constraint). 
@@ -50,7 +50,7 @@ Indexes are schema objects for speeding up the retrieval of rows by using a poin
 * We need to have DROP an INDEX privilege or we must be owner of the index to remove an index. 
 
 * Indexes **can not** be modified. To change an index we just drop an recreate it. 
-   
+  
    ~~~~sql
    DROP INDEX indexname;
    ~~~~
