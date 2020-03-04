@@ -1,11 +1,11 @@
 --**----------------------------------------------------**--
 -- Views
 
--- CREATE [OR REPLACE] [FORCE INOFORCE] VIEW view_name [(alias[, alias]...)] AS subquery 
--- [WITH CHECK OPTION [CONSTRAINT constraint_name]] 
--- [WITH read only[constraint constraint_name]]; 
+-- CREATE [OR REPLACE] [FORCE | NOFORCE] VIEW view_name [(alias[, alias]...)] AS subquery 
+-- [WITH CHECK OPTION] 
+-- [WITH read only]; 
 
--- * REPLACE If we created a view with the same name before we need to write OR REPLACE clause to change the view without dropping or regranting privileges. 
+-- * REPLACE If we created a view with the same name before, we need to write OR REPLACE clause to change the view without dropping or regranting privileges. 
 -- * FORCE Creates the view even if base table does not exist. 
 -- * NOFORCE Creates the view only if base table exist.(Default) 
 -- * SUBQUERY SELECT Statement for the view. 
@@ -140,7 +140,7 @@ INSERT INTO employees50 (
 -- Result :  view WITH CHECK OPTION where-clause violation
 
 
--- Or we canmake views readonly.
+-- Or we can make views readonly.
 
 
 
