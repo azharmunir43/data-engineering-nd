@@ -1,23 +1,23 @@
 ## Views
 
-### What is a View and why is it used for? 
+### What is a View and why is it used? 
 
 * A view is a schema object formed of a stored SELECT statement based on a table or another view. 
 * The view is stored in the data dictionary as a SELECT statement. 
 * There is no data in a view. We can think a view as a window that we can view or change in a table. 
 * The tables that views are based on are called based tables. 
 * Views are used for: 
-  * Restricting to access a data, 
-  * Making complex queries easy, 
+  * Restricting access to data, 
+  * Making complex queries easy and readable, 
   * Present different views of the same data. 
-  * Provide data independence(Search from a view without knowing exact tables). 
+  * Provide schema knowledge independence / abstraction (search from a view without knowing exact tables)
 
 ### Creating Views
 
 ```sql 
 CREATE [OR REPLACE] [FORCE | NOFORCE] VIEW view_name [(alias[, alias]...)] AS subquery 
-[WITH CHECK OPTION [CONSTRAINT constraint_name]] 
-[WITH READ ONLY [CONSTRAINT constraint_name]]; 
+[WITH CHECK OPTION] 
+[WITH READ ONLY]; 
 ```
 
 * REPLACE If we created a view with the same name before we need to write OR REPLACE clause to change the view without dropping or regranting privileges. 
@@ -117,7 +117,7 @@ WHERE employee_id = 207;
 
 #### How to control DML on views?
 
-As long as updates are concerned, we are good because we can change data that does not belong to that view. However, for insertions we can WITH CHECK OPTION.
+As long as updates are concerned, we are good because we can not change data that does not belong to that view. However, for insertions we can use WITH CHECK OPTION.
 
 ```sql
 CREATE OR REPLACE VIEW Employees50 AS
