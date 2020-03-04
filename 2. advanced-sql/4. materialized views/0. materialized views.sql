@@ -18,7 +18,7 @@
 -- * REFRESH FAST : Refresh the MV with just the changes of the existing data instead of repopulate entire MV. 
 -- * REFRESH COMPLETE: The table of materialized is truncated and repopulated with the associated query. 
 -- * REFRESH FORCE:A fast refresh is attempted. If fast refresh is not possible, complete refresh is performed. 
--- * ON COMMIT: The refresh is performed on a commitof any dependent tables. 
+-- * ON COMMIT: The refresh is performed on a commit of any dependent tables. 
 -- * ON DEMAND: The refresh is performed manually or a scheduled task. 
 -- * ENABLE QUERY REWRITE : Allows the optimizer to use query rewrite option to improve performance for expensive and time consuming process of the associated SQL query. 
 -- * DISABLE QUERY REWRITE : Disallows the optimizer for query rewriting. This option is default. 
@@ -26,3 +26,28 @@
 -- * AS SELECT : Query of the materialized view. The relevant table is populated with this query. It can be simple or complex query. 
 
 --**-------------------------------------------------------------**--
+
+
+--**----------------------------------------------------**--
+-- Create Materialized View (Example)
+--**----------------------------------------------------**--
+
+
+CREATE MATERIALIZED VIEW departments_summary_mv 
+BUILD IMMEDIATE
+REFRESH COMPLETE
+ON DEMAND
+
+AS
+    SELECT
+        d.department_name,
+        COUNT(e.employee_id) no_of_employees,
+        MIN(e.salary) min_salary,
+        MAX(e.salary) max_salary
+    FROM
+        employees     e
+        LEFT JOIN departments   d USING ( department_id )
+    GROUP BY
+        d.department_name
+    ORDER BY
+        COUNT(e.employee_id) DESC;
