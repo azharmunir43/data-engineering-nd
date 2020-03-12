@@ -60,7 +60,7 @@ AS
         COUNT(e.employee_id) DESC;
 ```
 
-In this example we are using COMPLETE refresh option which actually truncates the table reloads it every time a refresh is performed. However, we might want to use FAST refresh option which keeps track of  changes that have happened to base tables since the last refresh. For FAST refresh we need to configure materialized view logs on base tables.
+In this example we are using COMPLETE refresh option which actually truncates the table and reloads it every time a refresh is performed. However, we might want to use FAST refresh option which keeps track of  changes that have happened to base tables since the last refresh. For FAST refresh we need to configure materialized view logs on base tables. And if our view refers to multiple base tables, we need to configure logs on every table.
 
 ```sql
 CREATE MATERIALIZED VIEW LOG on employees;
@@ -72,7 +72,7 @@ We can refresh a materialized view on demand (manually) or on commit.
 
 #### **Refreshing Materialized Views Manually** 
 
-We can refresh materialized views manually with more than one ways. 
+We can refresh materialized views manually in multiple ways. 
 
  * We can use DBMS_MVlEW.REFRESH ( mview_name,refresh_type) procedure. 
     * Refresh Types : F (Force) , C (Complete) 
@@ -81,15 +81,13 @@ We can refresh materialized views manually with more than one ways.
       EXECUTE DBMS_MVIEW.REFRESH(departments_summary_mv2, 'F')
       ```
 
-    * 
-
- * We can use DBMS_SNAPSHOT package instead of DBMS_MVIEW. DBMS_MVIEW is synonym for DBMS_SNAPSHOT. 
+ * We can use DBMS_SNAPSHOT package instead of DBMS_MVIEW. Actually, DBMS_MVIEW is just a synonym for DBMS_SNAPSHOT. 
 
  * We can refresh all materialized views in the system if we have ALTER ANY MATERIALIZED VIEW system privilege with using the code below. 
 
   ```sql
   DECLARE 
-  FAILURES NUMBER;
+  FAILURES NUMBER; -- Variable to count failures
   BEGIN 
   	DBMS_MVIEW.REERESH_ALL_WIEWS (failures, 'C' , ' ' , TRUE, FALSE,FALSE)
   END
@@ -97,4 +95,4 @@ We can refresh materialized views manually with more than one ways.
 
  * There are several overloads for REFRESH and REFRESH_ALL_MVIEWS procedures.
 
-We can schedule refresh of materialized views.
+We can schedule refresh of materialized views as well.
