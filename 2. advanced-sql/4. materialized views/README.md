@@ -89,7 +89,7 @@ We can refresh materialized views manually in multiple ways.
   DECLARE 
   FAILURES NUMBER; -- Variable to count failures
   BEGIN 
-  	DBMS_MVIEW.REERESH_ALL_WIEWS (failures, 'C' , ' ' , TRUE, FALSE,FALSE)
+  	DBMS_MVIEW.REFRESH_ALL_WIEWS (failures, 'C' , ' ' , TRUE, FALSE,FALSE)
   END
   ```
 
