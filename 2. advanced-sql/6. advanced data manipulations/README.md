@@ -30,3 +30,16 @@ UPDATE departments
 SET manager_id = DEFAULT; 
 ```
 
+### Multitable INSERT Statements 
+
+- If we need to insert the same data into more than one table we can use multitable insert statements. 
+- If we don't use multitable insert statements, we need to retrieve the same data for each insert statement and this will increase database workload unnecessarily. 
+- Multitable insert statements will increase performance. 
+- Multitable insert statements are generally used in data warehousing because you need to load a data into many tables regularly in data warehousing. 
+- There are 4 types Of multitable insert statements: 
+  - Unconditional INSERT Statement
+  - Conditional INSERT ALL Statement
+  - Conditional INSERT FIRST Statement
+  - Pivoting INSERT Statement
+
+#### Unconditional INSERT Statement
