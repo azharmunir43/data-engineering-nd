@@ -209,7 +209,7 @@ DELETE FROM tablel aliasl
 WHERE column operator 
 	(SELECT expression 
      FROM table2 alias2 
-     WHERE aliasl.column = alias2. column
+     WHERE aliasl.column = alias2.column
 ); 
 ```
 
