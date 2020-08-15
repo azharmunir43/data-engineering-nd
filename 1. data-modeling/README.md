@@ -78,6 +78,9 @@ The PRIMARY KEY is made up of either just the PARTITION KEY or with the addition
 The **WHERE** statement is allowing us to do the fast reads. With Apache Cassandra, we are talking about big data -- think terabytes of data -- so we are making it fast for read purposes. Data is spread across all the nodes. By using the WHERE statement, we know which node to go to, from which node to get that data and serve it back. For example, imagine we have 10 years of data on 10 nodes or servers. So 1 year's data is on a separate node. By using the WHERE year = 1 statement we know which node to visit fast to pull the data from.
 
 - Data Modeling in Apache Cassandra is query focused, and that focus needs to be on the WHERE clause.
-- We must use partition key and all clustering columns first in order to apply a WHERE on non-key column in Apache Cassandra.
 - Failure to include a WHERE clause will result in an error (if configuration is not applied) or very bad performance.
+- Cassandra requires all fields in the WHERE clause to be part of the primary key.
+- Cassandra will not allow a part of a primary key to hold a null value.
+- While Cassandra will allow you to create a secondary index on a  column containing null values, it still won't allow you to query for  those null values.
+- Cassandra does not support the use of NOT or not equal to (!=) operators in the WHERE clause.
 
